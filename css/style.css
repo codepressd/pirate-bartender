@@ -1,0 +1,130 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+html, body{
+	background-color: #EAEAEA;
+	height: 100%;
+	/*text-align: center;*/
+	font-family: 'Exo', sans-serif;
+}
+
+section {
+  	background-color: #EAEAEA;
+  	min-height: 100%;
+  	margin-left: auto;
+  	margin-right: auto; 
+	width: 100%;
+
+}
+}
+section:after {
+  	content: "";
+  	display: block;
+}
+
+section > h1 {
+	padding: 20px 0;
+	font-size: 2em;
+	color: #0d1617;
+	text-align: center;
+
+}
+
+footer, section:after {
+
+	height: 60px; 
+}
+footer {
+  	background: #000;
+  	color: #fff;
+
+}
+p{
+	padding-top: 15px;
+}
+footer > h4{
+	padding: 1.5em 0 0;
+} 
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Exo', sans-serif;
+}
+input{
+	width: 90%;
+}
+ul{
+	list-style-type: none;
+}
+
+/* Navigation*/
+
+.top-nav{
+	background-color: #fff;
+	position: fixed;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	z-index:9999;
+}
+.top-nav .logo{
+	height: 4.375rem;
+}
+.top-nav >.content{
+	height: 3.375rem;
+}
+.top-nav .links{
+	text-align: center;
+	color: #838994;
+	font-size: 1.04rem;
+	margin-top: 1.7rem;
+}
+.top-nav .links li{
+	display: inline-block;
+	margin-left: 1.563rem;
+}
+.top-nav .links li.active{
+	color: #4c5058;
+	font-weight: 500;
+}
+.top-nav .links li:hover{
+	cursor: pointer;
+	color: #333;
+}
+
+/*Cover photo area*/
+
+
+.intro{
+	background-image: url('../image/first-background.jpg');
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 45.938rem;
+	overflow: auto;
+}
+.intro h1,
+.intro h3 {
+	color: #fff;
+	text-align: center;
+	font-weight: 300;
+}
+
+.intro h1{
+	margin-top:17.5rem;
+	font-size: 3.125rem;
+}
+.intro h3{
+	margin-top: 1.25rem;
+	font-size: 1.563rem;
+}
+
+
+/**/
