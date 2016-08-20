@@ -74,41 +74,26 @@ ul{
 	border-bottom: 1px solid #ddd;
 	z-index:9999;
 }
-.top-nav .logo{
-	height: 4.375rem;
-}
+
 .top-nav >.content{
 	height: 3.375rem;
+	padding: 30px;
 }
-.top-nav .links{
-	text-align: center;
-	color: #838994;
-	font-size: 1.04rem;
-	margin-top: 1.7rem;
-}
-.top-nav .links li{
-	display: inline-block;
-	margin-left: 1.563rem;
-}
-.top-nav .links li.active{
-	color: #4c5058;
-	font-weight: 500;
-}
-.top-nav .links li:hover{
-	cursor: pointer;
-	color: #333;
-}
+
 
 /*Cover photo area*/
-
-
+.content{
+	text-align: center;
+	margin: 0 auto;
+}
 .intro{
-	background-image: url('../image/first-background.jpg');
+	background-image: url('../img/pirate-bar.jpg');
 	background-position: center bottom;
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 45.938rem;
 	overflow: auto;
+	opacity: .8;
 }
 .intro h1,
 .intro h3 {
@@ -128,3 +113,6 @@ ul{
 
 
 /**/
+.hidden{
+	display: none;
+}
