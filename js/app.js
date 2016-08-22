@@ -28,10 +28,10 @@ var Bartender = function(order) {
     this.order = order;
 };
 
-Bartender.prototype.makeDrink = function() {
+Bartender.prototype.makeDrink = function(order) {
     var drink = [];
 
-    order = this.order.answers;
+    order = order;
 
     if (order.indexOf("strong") >= 0) {
         var rand = strong.ingredient.length;
@@ -63,14 +63,10 @@ Bartender.prototype.makeDrink = function() {
         drink.push(savory.ingredient[rand]);
     }
     $(".display-question").text("Have a "+drink+"!");
+    $(".one, .two").remove();
 
 };
 
-function makeADrink(answers){
-
-	var mixologist = new Bartender(answers);
-	mixologist.makeDrink();
-}
 
 //display questions and options
 
@@ -86,7 +82,7 @@ function createQuestion() {
         $('.two').text(currentQuestion[2]);
         numOfQuestions++;
     } else {
-        makeADrink(newAnswers);
+        Bartender.prototype.makeDrink(newAnswers);
     }
 }
 
@@ -98,11 +94,9 @@ $(".answer").on('click', function(event) {
 
 //start the bartender
 $(".init-bar").on("click", function() {
-
     $(".init-bar").remove();
     $(".buttons button").removeClass('hidden');
     createQuestion();
-
 });
 
 
