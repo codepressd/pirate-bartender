@@ -62,41 +62,39 @@ Bartender.prototype.makeDrink = function() {
         rand = Math.round(Math.random() * rand);
         drink.push(savory.ingredient[rand]);
     }
-
+    $(".display-question").text("Have a "+drink+"!");
 
 };
 
+function makeADrink(answers){
+
+	var mixologist = new Bartender(answers);
+	mixologist.makeDrink();
+}
+
 //display questions and options
 
-
+var numOfQuestions = 0;
+var currentQuestion = BartenderApp.allQuestions[numOfQuestions].question;
 
 function createQuestion() {
 
-    var numOfQuestions = 0;
-    //var currentQuestion = BartenderApp.allQuestions[numOfQuestions].question;
-
-    if (typeof BartenderApp.allQuestions[numOfQuestions] != "undefinded") {
-
-        $('.display-question').text(BartenderApp.allQuestions[numOfQuestions].question[0]);
-        $('.one').text(BartenderApp.allQuestions[numOfQuestions].question[1]);
-        $('.two').text(BartenderApp.allQuestions[numOfQuestions].question[2]);
+    if (typeof BartenderApp.allQuestions[numOfQuestions] != "undefined") {
+        currentQuestion = BartenderApp.allQuestions[numOfQuestions].question;
+        $('.display-question').text(currentQuestion[0]);
+        $('.one').text(currentQuestion[1]);
+        $('.two').text(currentQuestion[2]);
         numOfQuestions++;
     } else {
-        Bartender.makeDrink(answers);
+        makeADrink(newAnswers);
     }
 }
 
 $(".answer").on('click', function(event) {
     var pickedAnswer = $(event.target).text();
     newAnswers.push(pickedAnswer);
-    /*    $('.intro h1').text("");
-        $('.one').text("");
-        $('.two').text("");*/
     createQuestion();
 });
-
-
-
 
 //start the bartender
 $(".init-bar").on("click", function() {
