@@ -1,71 +1,128 @@
-// Object with questions - Don't see the reason to use a constructor/Overkill
-var onQuestion = 1;
-var questions = {
-    1: "Do ye like yer drinks strong?",
-    2: "Do ye like it with a salty tang ?",
-    3: "Are ye a lubber who likes it savory ?",
-    4: "Would ye like a bit of sweetness with yer poison ?",
-    5: "Are ye one for a sour finish ?"
+var BartenderApp = BartenderApp || {}
+BartenderApp.allQuestions = [];
+BartenderApp.listOfPatrons = [];
+
+// Function to construct questions
+
+var Questions = function(question) {
+    this.question = question;
+    BartenderApp.allQuestions.push(this);
+}
+
+
+var drinkStrength = new Questions(["Do you Like your drinks Strong?", "strong", "weak"]);
+var sweetOrSour = new Questions(["Do you Like your drinks sweet or sour?", "sour", "sweet"]);
+var saltOrSavory = new Questions(["Do you like salty or savory?", "salty", "savory"]);
+
+//Answers
+
+var newAnswers = [];
+
+var Answers = function(answers) {
+    this.answers = answers;
+    BartenderApp.listOfPatrons.push(this);
 };
 
+// Bartender Constructor
+var Bartender = function(order) {
+    this.order = order;
+};
+
+Bartender.prototype.makeDrink = function() {
+    var drink = [];
+
+    order = this.order.answers;
+
+    if (order.indexOf("strong") >= 0) {
+        var rand = strong.ingredient.length;
+        rand = Math.round(Math.random() * rand);
+        drink.push(strong.ingredient[rand]); // need to add randomness
+    };
+
+    if (order.indexOf("weak") >= 0) {
+        var rand = weak.ingredient.length;
+        rand = Math.round(Math.random() * rand);
+        drink.push(weak.ingredient[rand]);
+    }
+
+    if (order.indexOf("sour") >= 0) {
+        var rand = fruityIngredients.ingredient.length;
+        rand = Math.round(Math.random() * rand);
+        drink.push(sour.ingredient[rand]);
+    }
+
+    if (order.indexOf("salty") >= 0) {
+        var rand = salty.ingredient.length;
+        rand = Math.round(Math.random() * rand);
+        drink.push(salty.ingredient[rand]);
+    }
+
+    if (order.indexOf("savory") >= 0) {
+        var rand = savory.ingredient.length;
+        rand = Math.round(Math.random() * rand);
+        drink.push(savory.ingredient[rand]);
+    }
 
 
-
-var Bartender = function(num) {
+};
 
 //display questions and options
-	$('.intro h1').text(questions[num]);
-	$('.one').text(foodStorage.ingredients[num][0].ingredient);
-	$('.two').text(foodStorage.ingredients[num][1].ingredient);
-	$('.three').text(foodStorage.ingredients[num][2].ingredient);
-
-};
 
 
+
+function createQuestion() {
+
+    var numOfQuestions = 0;
+    //var currentQuestion = BartenderApp.allQuestions[numOfQuestions].question;
+
+    if (typeof BartenderApp.allQuestions[numOfQuestions] != "undefinded") {
+
+        $('.display-question').text(BartenderApp.allQuestions[numOfQuestions].question[0]);
+        $('.one').text(BartenderApp.allQuestions[numOfQuestions].question[1]);
+        $('.two').text(BartenderApp.allQuestions[numOfQuestions].question[2]);
+        numOfQuestions++;
+    } else {
+        Bartender.makeDrink(answers);
+    }
+}
+
+$(".answer").on('click', function(event) {
+    var pickedAnswer = $(event.target).text();
+    newAnswers.push(pickedAnswer);
+    /*    $('.intro h1').text("");
+        $('.one').text("");
+        $('.two').text("");*/
+    createQuestion();
+});
+
+
+
+
+//start the bartender
 $(".init-bar").on("click", function() {
 
     $(".init-bar").remove();
     $(".buttons button").removeClass('hidden');
-    Bartender(onQuestion);
+    createQuestion();
 
 });
 
 
 /*Create Ingredients constructor Function*/
 
+var ingredients = function(ingredient) {
+    this.ingredient = ingredient;
 
-var ingredients = function(name, arr) {
-        this.name = name;
-        this.ingredients = arr;
-        foodStorage.addItems(this.name, this.ingredients); 
-
-    }
-
-/*Create Store room constructor function*/
-
-
-var Storeroom = function() {
-    this.ingredients = {};
-}
-Storeroom.prototype.addItems = function(name, item) {
-    this.ingredients[name] = item;
-}
-Storeroom.prototype.removeQuantity = function(itemLocal) {
-    itemLocal.amt--;
 }
 
+var salty = new ingredients(["Salted Rim", "Olives", "Tomato Juice"]);
 
-/*Initiate Pantry*/
+var sweet = new ingredients(["Sugared Rim", "Cherries", "Candied Grapefruit"]);
 
+var savory = new ingredients(["Balsamic Cherry Shrub", "Rosemary", "Cured Pork"]);
 
-var foodStorage = new Storeroom();
+var strong = new ingredients(["Double Shot Vodka", "Double Shot Gin", "Double Shot Rum"]);
 
-var salty = new ingredients(2, [{ ingredient: "Salted Rim", amt: 4 }, { ingredient: "Olives", amt: 5 }, { ingredient: "Tomato Juice", amt: 3 }]);
+var weak = new ingredients(["Shot Vodka", "Shot Gin", "Shot Rum"]);
 
-var sweet = new ingredients(4, [{ ingredient: "Sugared Rim", amt: 4 }, { ingredient: "Cherries", amt: 5 }, { ingredient: "Candied Grapefruit", amt: 3 }]);
-
-var savory = new ingredients(3, [{ ingredient: "Balsamic Cherry Shrub", amt: 4 }, { ingredient: "Rosemary", amt: 5 }, { ingredient: "Cured Pork", amt: 3 }]);
-
-var strong = new ingredients(1, [{ ingredient: "Double Shot Vodka", amt: 4 }, { ingredient: "Double Shot Gin", amt: 5 }, { ingredient: "Double Shot Rum", amt: 3 }]);
-
-var sour = new ingredients(5, [{ ingredient: "Lemon Juice", amt: 4 }, { ingredient: "Grapefruit Juice", amt: 5 }, { ingredient: "Lime Juice", amt: 3 }]);
+var sour = new ingredients(["Lemon Juice", "Grapefruit Juice", "Lime Juice"]);
